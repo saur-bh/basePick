@@ -1,4 +1,4 @@
-import { BasePage } from '../pages/basePage';
+import { BasePage } from './basePage';
 /**
  * Class representing a WikiPage.
  * @extends BasePage
