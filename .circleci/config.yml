@@ -1,0 +1,26 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1
+executors:
+  with-chrome:
+    resource_class: small
+    docker:
+      - image: "cypress/browsers:node14.16.0-chrome90-ff88"
+workflows:
+  build:
+    jobs:
+      - cypress/install
+      - cypress/run:
+          store_artifacts: true
+          requires:
+            - cypress/install
+          executor: with-chrome
+          browser: chrome
+          post-steps:
+            - run: ls
+            - store_artifacts:
+                path: cypress/reports
+            - store_artifacts:
+                path: cypress/screenshots
+            - store_artifacts:
+                path: cypress/videos
